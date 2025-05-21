@@ -2,6 +2,7 @@ import { useState, forwardRef, FormEvent } from 'react'
 
 const Subscribe = forwardRef<HTMLElement>((_, ref) => {
   const [email, setEmail] = useState('')
+  const [name, setName] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [message, setMessage] = useState<{ text: string; type: 'success' | 'error' } | null>(null)
 
@@ -24,6 +25,7 @@ const Subscribe = forwardRef<HTMLElement>((_, ref) => {
         },
         body: JSON.stringify({ 
           email,
+          name: name.trim() || 'Subscriber', // Use provided name or default to 'Subscriber'
           apiKey: import.meta.env.VITE_MC_API_KEY,
           dc: import.meta.env.VITE_MC_DC,
           audienceId: import.meta.env.VITE_MC_AUDIENCE_ID
@@ -38,6 +40,7 @@ const Subscribe = forwardRef<HTMLElement>((_, ref) => {
       
       setMessage({ text: 'Thank you for subscribing!', type: 'success' })
       setEmail('')
+      setName('')
     } catch (error) {
       setMessage({ 
         text: error instanceof Error ? error.message : 'An error occurred. Please try again.', 
@@ -58,6 +61,18 @@ const Subscribe = forwardRef<HTMLElement>((_, ref) => {
           </p>
           
           <form className="subscribe-form" onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="name" className="visually-hidden">Your Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Your name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                aria-required="false"
+              />
+            </div>
             <div className="form-group">
               <label htmlFor="email" className="visually-hidden">Email Address</label>
               <input

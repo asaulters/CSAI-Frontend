@@ -39,7 +39,7 @@ app.post('/subscribe', async (req, res) => {
   try {
     console.log('Subscribe request received:', JSON.stringify(req.body, null, 2));
     
-    const { email, apiKey, dc, audienceId } = req.body;
+    const { email, name, apiKey, dc, audienceId } = req.body;
     
     if (!email || !email.includes('@')) {
       console.log('Invalid email:', email);
@@ -51,14 +51,16 @@ app.post('/subscribe', async (req, res) => {
       return res.status(400).json({ message: 'Missing Mailchimp configuration' });
     }
     
-    console.log('Preparing Mailchimp request for email:', email);
+    // Use provided name or default to 'Subscriber'
+    const subscriberName = name || 'Subscriber';
+    console.log('Preparing Mailchimp request for email:', email, 'with name:', subscriberName);
     
     // Prepare data for Mailchimp
     const data = JSON.stringify({
       email_address: email,
       status: 'subscribed',
       merge_fields: {
-        FNAME: 'Subscriber' // Adding the required FNAME field
+        FNAME: subscriberName // Use the provided name
       }
     });
     
