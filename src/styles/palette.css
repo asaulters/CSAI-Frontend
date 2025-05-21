@@ -1,0 +1,26 @@
+:root {
+  /* Warm oranges / terracotta palette */
+  --color-primary: #e86a33;
+  --color-primary-light: #ff8c61;
+  --color-primary-dark: #c24d2c;
+  
+  --color-secondary: #a64b2a;
+  --color-secondary-light: #d17a56;
+  --color-secondary-dark: #7a3620;
+  
+  --color-terracotta: #cb6843;
+  --color-terracotta-light: #e88f6f;
+  --color-terracotta-dark: #a54e2f;
+  
+  --color-background: #fff9f5;
+  --color-background-alt: #f5ebe6;
+  
+  --color-text: #2d2926;
+  --color-text-light: #5f5b57;
+  --color-text-lighter: #8c8883;
+  
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-error: #d32f2f;
+  --color-success: #388e3c;
+}
