@@ -137,9 +137,14 @@ section {
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo-image {
+  height: 40px;
+  width: auto;
 }
 
 .nav-list {
@@ -395,8 +400,8 @@ section {
     gap: 1rem;
   }
   
-  .logo {
-    font-size: 1.25rem;
+  .logo-image {
+    height: 32px;
   }
   
   .about-features {

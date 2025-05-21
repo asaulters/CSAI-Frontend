@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import logoImage from '../assets/logo.png'
 
 interface HeaderProps {
   onAboutClick: () => void
@@ -22,7 +23,7 @@ const Header = ({ onAboutClick, onContactClick }: HeaderProps) => {
       <div className="container">
         <div className="header-content">
           <a href="#" className="logo">
-            CSAI-Digest
+            <img src={logoImage} alt="CSAI-Digest Logo" className="logo-image" />
           </a>
           <nav className="nav">
             <ul className="nav-list">
