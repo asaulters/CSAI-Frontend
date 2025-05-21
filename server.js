@@ -56,7 +56,10 @@ app.post('/subscribe', async (req, res) => {
     // Prepare data for Mailchimp
     const data = JSON.stringify({
       email_address: email,
-      status: 'subscribed'
+      status: 'subscribed',
+      merge_fields: {
+        FNAME: 'Subscriber' // Adding the required FNAME field
+      }
     });
     
     // Set up the request to Mailchimp
