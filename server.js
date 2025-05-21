@@ -18,15 +18,15 @@ app.use(express.static(path.join(__dirname, 'dist')));
 // Handle the subscribe endpoint
 app.post('/subscribe', async (req, res) => {
   try {
-    const { email } = req.body;
+    const { email, apiKey, dc, audienceId } = req.body;
     
     if (!email || !email.includes('@')) {
       return res.status(400).json({ message: 'Valid email is required' });
     }
     
-    const apiKey = process.env.VITE_MC_API_KEY;
-    const dc = process.env.VITE_MC_DC;
-    const audienceId = process.env.VITE_MC_AUDIENCE_ID;
+    if (!apiKey || !dc || !audienceId) {
+      return res.status(400).json({ message: 'Missing Mailchimp configuration' });
+    }
     
     // Prepare data for Mailchimp
     const data = JSON.stringify({
